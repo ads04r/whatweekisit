@@ -1,6 +1,6 @@
 <?php
 
-include("/var/wwwsites/phplib/academicyear.php");
+include("./academicyear.php");
 
 $start = getAcademicYearStart(time());
 $week = getCurrentWeek();
