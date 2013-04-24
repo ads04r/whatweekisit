@@ -19,7 +19,7 @@ html,body {
 	font-family: sans-serif;
 }
 
-#calendarbox h1 h2 {
+#calendarbox h1, #calendarbox h2 {
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
@@ -27,12 +27,10 @@ html,body {
 
 #calendarbox h1 {
 	font-size: 20em;
-	line-height: 0px;
 }
 
 #calendarbox h2 {
 	font-size: 7em;
-	line-height: 0px;
 }
 
 #formatbox {
