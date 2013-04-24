@@ -1,5 +1,10 @@
 <?php
 
+if(!(function_exists("sparql_get")))
+{
+	include_once("~/tools/PHP-SPARQL-Lib/sparqllib.php");
+}
+
 function getAcademicYearStart($timestamp)
 {
 	$ds = gmdate("Y-m-d", $timestamp) . "T00:00:00Z";

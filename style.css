@@ -1,0 +1,51 @@
+html,body {
+	width: 100%;
+	background-color: #CFCFCF;
+	color: #000000;
+	overflow: hidden;
+}
+
+#calendarbox {
+	border: solid 2px #000000;
+	display: block;
+	width: 480px;
+	position: relative;
+	margin-top: 2em;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+	background-color: #FFFFFF;
+	text-align: center;
+	font-family: sans-serif;
+}
+
+#calendarbox h1 h2 {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+#calendarbox h1 {
+	font-size: 20em;
+	line-height: 0px;
+}
+
+#calendarbox h2 {
+	font-size: 7em;
+	line-height: 0px;
+}
+
+#formatbox {
+	text-align: right;
+	font-family: sans-serif;
+	font-size: small;
+	display: block;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 1em;
+	background-color: #FFFFFF;
+	border-top: solid 1px #000000;
+	padding: 0.5em;
+}
