@@ -9,7 +9,18 @@ $current_date = time();
 
 if((strlen($date) == 8) & (strlen(preg_replace("/[^0-9]/", "", $date)) == 8))
 {
-	$current_date = strtotime(substr($date, 0, 4) . "-" . substr($date, 4, 2) . "-" . substr($date, 6, 2) . " 00:00:00");
+	$year = (int) substr($date, 0, 4);
+	$month = (int) substr($date, 4, 2);
+	$day = (int) substr($date, 6, 2);
+	if(checkdate($month, $day, $year))
+	{
+		$current_date = strtotime($year . "-" . $month . "-" . $day . " 12:00:00");
+	}
+	else
+	{
+		$current_date = 0;
+		$date = "";
+	}
 }
 else
 {
@@ -20,11 +31,11 @@ else
 $start = getAcademicYearStart($current_date);
 $week = getWeekNumber($current_date);
 
-if(($week < 0) | ($week > 52))
+if(($week < 0) | ($week > 52) | ($current_date == 0))
 {
 	header("HTTP/1.0 404 Not Found");
 	print("<h1>404 Not Found</h1>");
-	print("<p>You input a date that's not in our data... sorry!</p>");
+	print("<p>You input an invalid date, or a date that's not in our data... sorry!</p>");
 	exit();
 }
 
