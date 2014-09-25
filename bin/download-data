@@ -1,0 +1,53 @@
+#!/usr/bin/php -q
+<?php
+
+$uri = "http://id.southampton.ac.uk/dataset/university-timetable/latest"; // URI of dataset
+
+$lib_dir = dirname(dirname(__FILE__)) . "/lib";
+$var_dir = dirname(dirname(__FILE__)) . "/var";
+include_once($lib_dir . "/arc2/ARC2.php");
+include_once($lib_dir . "/Graphite/Graphite.php");
+
+// Dump all known academic dates
+
+$g = new Graphite();
+$ret = new Graphite();
+$g->load($uri);
+foreach($g->allSubjects() as $subj)
+{
+	$subj_uri = "" . $subj;
+	if(preg_match("|^http://id\\.southampton\\.ac\\.uk/academic-session/([0-9]+)|", $subj_uri) == 0) { continue; }
+	$res = $g->resource($subj_uri);
+	$ret->addTurtle("", $res->serialize("Turtle"));
+}
+
+$ret->ns("soton", "http://id.southampton.ac.uk/ns/");
+$ret->ns("tl", "http://purl.org/NET/c4dm/timeline.owl#");
+$fp = fopen($var_dir . "/all.ttl", "w");
+fwrite($fp, $ret->serialize("Turtle"));
+fclose($fp);
+
+// Dump just the current dates (and the next one, just in case this script breaks)
+
+$ret = new Graphite();
+$dt = time();
+foreach($g->allSubjects() as $subj)
+{
+	$subj_uri = "" . $subj;
+	$res = $g->resource($subj_uri);
+	if(!($res->has("http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime"))) { continue; }
+	$dt_st = strtotime("" . $res->get("http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime"));
+	$dt_ed = strtotime("" . $res->get("http://purl.org/NET/c4dm/timeline.owl#endsAtDateTime"));
+	if(($dt < $dt_st) | ($dt > $dt_ed)) { continue; }
+	$res = $g->resource($subj_uri);
+	$ret->addTurtle("", $res->serialize("Turtle"));
+	if(!($res->has("http://purl.org/NET/c4dm/timeline.owl#before"))) { continue; }
+	$next = $res->get("http://purl.org/NET/c4dm/timeline.owl#before");
+	$ret->addTurtle("", $next->serialize("Turtle"));	
+}
+
+$ret->ns("soton", "http://id.southampton.ac.uk/ns/");
+$ret->ns("tl", "http://purl.org/NET/c4dm/timeline.owl#");
+$fp = fopen($var_dir . "/current.ttl", "w");
+fwrite($fp, $ret->serialize("Turtle"));
+fclose($fp);

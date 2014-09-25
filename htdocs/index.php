@@ -1,6 +1,11 @@
 <?php
 
-include_once("./academicyear.php");
+$lib_dir = dirname(dirname(__FILE__)) . "/lib";
+$var_dir = dirname(dirname(__FILE__)) . "/var";
+
+include_once($lib_dir . "/arc2/ARC2.php");
+include_once($lib_dir . "/Graphite/Graphite.php");
+include_once($lib_dir . "/academicyear.php");
 
 $date = trim($_GET['date']);
 $format = strtolower($_GET['format']);
@@ -80,7 +85,7 @@ if(strlen($format) > 0)
 		<title>What week is it?</title>
 		<meta http-equiv="Content-Language" content="English" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="./style.css" />
+		<link rel="stylesheet" type="text/css" href="./style/style.css" />
 	</head>
 	<body>
 		<div id="calendarbox">
