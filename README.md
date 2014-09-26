@@ -4,7 +4,7 @@ whatweekisit
 Something for Southampton uni that tells you what week it is.
 
 For an actual working example (and possibly this software's only
-practical use): http://whatweekisit.ecs.soton.ac.uk/
+practical use): http://whatweekisit.soton.ac.uk/
 
 Pat and I became rather frustrated that the uni's timetabling
 system runs on a week system but real life runs on a date system

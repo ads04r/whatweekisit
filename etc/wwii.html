@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>What week is it?</title>
+		<meta http-equiv="Content-Language" content="English" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="./style/style.css" />
+	</head>
+	<body>
+		<div id="calendarbox">
+			<h2>WEEK</h2>
+			<h1>{{ @day->weekNumber() }}</h1>
+			<p>of the year that started {{ date("jS F Y", @day->academicYearStart()) }}.</p>
+		</div>
+		<div id="formatbox">Other formats | <a href="./?format=xml">XML</a> | <a href="./?format=json">JSON</a></div>
+	</body>
+</html>

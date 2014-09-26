@@ -1,0 +1,12 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /imouto/index.php [L,QSA]
+
+AddType application/json .json
+AddType application/xml .xml
+AddType application/rdf+xml .rdf
+AddType text/turtle .ttl
+
