@@ -1,5 +1,8 @@
-whatweekisit
-============
+What Week Is It?
+================
+
+Version 1.7
+-----------
 
 Something for Southampton uni that tells you what week it is.
 
@@ -15,12 +18,12 @@ until the year 2020, I felt this was an appropriate way of
 showing it off.
 
 Installing it is a little hasslesome, you need to have
-Chris's PHP-SPARQL-Lib installed, and configure the
-include paths in the PHP files appropriately.
+the Fatfree Framework, Chris's Graphite library and
+ARC2 (a dependency of Graphite) although all these are
+available through git, so I've added them as submodules.
+Directory paths are a lot better in this version.
 
 To actually use it, go to / on the server. That's it.
 
-If you want XML or JSON, follow the links to /?format=xml
-and /?format=json respectively. If you want to know what
-week a particular date is in, go to /?date=yyyymmdd
-
+Alternative formats are due to be re-added soon in a much more
+RESTful way than v1.0. Old URLs should all redirect properly.
