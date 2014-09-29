@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>What week is it?</title>
+		<meta http-equiv="Content-Language" content="English" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="./style/style.css" />
+	</head>
+	<body>
+		<div style="position: absolute; left: 16px; right: 16px; top: 16px; background-color: #FFFFFF; border: solid 1px #000000; padding: 16px;">
+			<h1 style="text-align: center;">You're almost there!</h1>
+			<p>
+				"What Week Is It?" needs some term date data in order to function. This is all available
+				from the Open Data site, <a href="http://data.southampton.ac.uk/">data.soton.ac.uk</a>.
+				But to make this process as easy as possible, there is a command line PHP script in the
+				<samp>/bin</samp> directory that downloads the correct data into the correct place
+				automatically.
+			</p>
+			<p>
+				To download the data, simply run the file <samp>./bin/download-data</samp>.
+				Once you've done this, this site should then Just Work. If it doesn't,
+				ensure the files <samp>current.ttl</samp> and <samp>all.ttl</samp> are present
+				in the <samp>/var</samp> directory.
+			</p>
+			<p>
+				<strong>OPTIONAL:</strong> The <samp>download-data</samp> script will download all the data
+				and parse out the bits it doesn't need, just for reasons of efficiency. This means that at
+				the end of the current semester or term, the data will be out of date, and therefore this
+				process must be repeated regularly. To ensure this happens, open your crontab file
+				and add a line to make the script run once a day, preferably at a quiet time such as the
+				early hours of the morning.
+			</p>
+		</div>
+	</body>
+</html>
