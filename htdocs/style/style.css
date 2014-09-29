@@ -5,7 +5,6 @@ html,body {
 	overflow: hidden;
 }
 
-@media screen and (min-width: 640px) {
 
 	#calendarbox {
 		border: solid 2px #000000;
@@ -50,11 +49,14 @@ html,body {
 		padding: 0.5em;
 	}
 
-}
 
 @media screen and (max-width: 639px) {
 
 	#calendarbox {
+		border: 0px;
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
 		display: block;
 		position: absolute;
 		top: 0px;
@@ -78,6 +80,11 @@ html,body {
 	}
 
 	#formatbox {
+		font-family: serif;
+		font-size: 1em;
+		background-color: #CFCFCF;
+		border: 0px;
+		padding: 0px;
 		display: fixed;
 		position: absolute;
 		bottom: 0px;
