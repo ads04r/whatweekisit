@@ -1,9 +1,9 @@
 [submodule "lib/fatfree"]
 	path = lib/fatfree
-	url = git@github.com:bcosca/fatfree.git
+	url = https://github.com/bcosca/fatfree.git
 [submodule "lib/Graphite"]
 	path = lib/Graphite
-	url = git@github.com:cgutteridge/Graphite.git
+	url = https://github.com/cgutteridge/Graphite.git
 [submodule "lib/arc2"]
 	path = lib/arc2
-	url = git@github.com:semsol/arc2.git
+	url = https://github.com/semsol/arc2.git
