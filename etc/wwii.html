@@ -13,6 +13,12 @@
 			<h1>{{ @day->weekNumber() }}</h1>
 			<p>of the year that started {{ date("jS F Y", @day->academicYearStart()) }}.</p>
 		</div>
-		<div id="formatbox">Other formats | <a href="today.xml">XML</a> | <a href="today.json">JSON</a></div>
+		<div id="formatbox">
+			Other formats 
+			| <a href="today.xml">XML</a>
+			| <a href="today.json">JSON</a>
+			| <a href="today.ttl">Turtle</a>
+			| <a href="today.rdf">RDF/XML</a>
+		</div>
 	</body>
 </html>
