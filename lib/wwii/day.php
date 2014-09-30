@@ -43,6 +43,17 @@ class Day
 		return($this->g->serialize("NTriples"));
 	}
 
+	public function fileName()
+	{
+		$fn = preg_replace("|^(.+)/([^/]*)$|", "$2", $_SERVER['REQUEST_URI']);
+		$fn = preg_replace("|^(.+)\\.([^\\.]*)$|", "$1", $fn);
+		if(strlen($fn) == 0)
+		{
+			return("today");
+		}
+		return(trim($fn));
+	}
+
 	public function getInfo()
 	{
 		if(count($this->info) > 0)

@@ -15,10 +15,10 @@
 		</div>
 		<div id="formatbox">
 			Other formats 
-			| <a href="today.xml">XML</a>
-			| <a href="today.json">JSON</a>
-			| <a href="today.ttl">Turtle</a>
-			| <a href="today.rdf">RDF/XML</a>
+			| <a href="{{ @day->fileName() }}.xml">XML</a>
+			| <a href="{{ @day->fileName() }}.json">JSON</a>
+			| <a href="{{ @day->fileName() }}.ttl">Turtle</a>
+			| <a href="{{ @day->fileName() }}.rdf">RDF/XML</a>
 		</div>
 	</body>
 </html>
