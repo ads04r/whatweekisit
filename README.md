@@ -1,7 +1,7 @@
 What Week Is It?
 ================
 
-Version 1.7
+Version 2.0
 -----------
 
 Something for Southampton uni that tells you what week it is.
@@ -21,9 +21,9 @@ Installing it is a little hasslesome, you need to have
 the Fatfree Framework, Chris's Graphite library and
 ARC2 (a dependency of Graphite) although all these are
 available through git, so I've added them as submodules.
-Directory paths are a lot better in this version.
+Directory paths are a lot better in this version. Docs
+for installing and configuring are in the /docs
+directory.
 
 To actually use it, go to / on the server. That's it.
 
-Alternative formats are due to be re-added soon in a much more
-RESTful way than v1.0. Old URLs should all redirect properly.
