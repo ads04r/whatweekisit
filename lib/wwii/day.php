@@ -47,6 +47,7 @@ class Day
 	{
 		$fn = preg_replace("|^(.+)/([^/]*)$|", "$2", $_SERVER['REQUEST_URI']);
 		$fn = preg_replace("|^(.+)\\.([^\\.]*)$|", "$1", $fn);
+		$fn = trim($fn, "/");
 		if(strlen($fn) == 0)
 		{
 			return("today");
