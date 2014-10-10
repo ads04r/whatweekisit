@@ -10,6 +10,7 @@ class Day
 
 	private $info;
 	private $year_start;
+	private $year_end;
 
 	public function toJson()
 	{
@@ -129,7 +130,31 @@ class Day
 			if(($dt < $dt_st) | ($dt > $dt_ed)) { continue; }
 
 			$this->year_start = $dt_st;
+			$this->year_end = $dt_ed;
 			return($dt_st);
+		}
+
+		return 0;
+	}
+
+	public function academicYearEnd()
+	{
+		if($this->year_end > 0)
+		{
+			return($this->year_end);
+		}
+
+		$dt = $this->dt;
+		foreach($this->g->allOfType("http://id.southampton.ac.uk/ns/AcademicSession") as $res)
+		{
+			if(!($res->has("http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime"))) { continue; }
+			$dt_st = strtotime("" . $res->get("http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime"));
+			$dt_ed = strtotime("" . $res->get("http://purl.org/NET/c4dm/timeline.owl#endsAtDateTime"));
+			if(($dt < $dt_st) | ($dt > $dt_ed)) { continue; }
+
+			$this->year_start = $dt_st;
+			$this->year_end = $dt_ed;
+			return($dt_ed);
 		}
 
 		return 0;

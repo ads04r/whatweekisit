@@ -91,6 +91,31 @@ function render_old($f3)
 	return(json_encode($ret));
 }
 
+function render_feed($f3, $feedid)
+{
+	$feed = new Feed();
+	$day = new Day($f3, "");
+
+	if(strcmp($feedid, "weeks") == 0)
+	{
+		$feed->addWeekEvents($day);
+	}
+
+	if(strcmp($feedid, "holidays") == 0)
+	{
+		$feed->addHolidayEvents($day);
+	}
+
+	if($feed->count == 0)
+	{
+		$f3->error(404);
+		return("");
+	}
+
+	header("Content-type: text/plain");
+	return($feed->render($feedid));
+}
+
 // Set up F3
 
 $f3 = require($lib_dir . "/fatfree/lib/base.php");
@@ -110,5 +135,15 @@ $f3->route("GET /?format=@format", function($f3) { $f3->reroute('/today.' . $f3-
 $f3->route("GET /today.@format", function($f3) { print(render($f3, "", $f3->get('PARAMS.format'))); } );
 $f3->route("GET /@date.@format", function($f3) { print(render($f3, $f3->get('PARAMS.date'), $f3->get('PARAMS.format'))); } );
 $f3->route("GET /today_old.json", function($f3) { print(render_old($f3)); } );
+
+// Routing for ICS feeds
+
+$f3->route("GET /feed/@feedname.ics", function($f3) { print(render_feed($f3, $f3->get('PARAMS.feedname'))); } );
+
+// Static pages
+
+$f3->route("GET /data.html", function($f3) { $template = new Template(); print($template->render("../etc/data.html")); } );
 $f3->route("GET /", function($f3) { print(render($f3, "", "html")); } );
+
 $f3->run();
+

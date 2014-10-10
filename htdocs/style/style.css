@@ -49,6 +49,15 @@ html,body {
 		padding: 0.5em;
 	}
 
+	#informationbox {
+		position: absolute;
+		left: 16px;
+		right: 16px;
+		top: 16px;
+		background-color: #FFFFFF;
+		border: solid 1px #000000;
+		padding: 16px;
+	}
 
 @media screen and (max-width: 639px) {
 
@@ -92,6 +101,16 @@ html,body {
 		left: 0px;
 		right: 0px;
 		text-align: center;
+	}
+
+	#informationbox {
+		position: absolute;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		background-color: #FFFFFF;
+		border: 0px;
+		padding: 16px;
 	}
 
 }
