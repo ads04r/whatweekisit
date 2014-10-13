@@ -14,11 +14,17 @@
 			<p>of the year that started {{ date("jS F Y", @day->academicYearStart()) }}.</p>
 		</div>
 		<div id="formatbox">
-			Other formats 
-			| <a href="{{ @day->fileName() }}.xml">XML</a>
-			| <a href="{{ @day->fileName() }}.json">JSON</a>
-			| <a href="{{ @day->fileName() }}.ttl">Turtle</a>
-			| <a href="{{ @day->fileName() }}.rdf">RDF/XML</a>
+			<span class="links">
+				<a href="data.html">More Information</a>
+				| <a href="https://github.com/ads04r/whatweekisit">Fork me on Github</a>
+			</span>
+			<span class="formats">
+				Other formats 
+				| <a href="{{ @day->fileName() }}.xml">XML</a>
+				| <a href="{{ @day->fileName() }}.json">JSON</a>
+				| <a href="{{ @day->fileName() }}.ttl">Turtle</a>
+				| <a href="{{ @day->fileName() }}.rdf">RDF/XML</a>
+			</span>
 		</div>
 	</body>
 </html>

@@ -38,7 +38,6 @@ html,body {
 	}
 
 	#formatbox {
-		text-align: right;
 		font-family: sans-serif;
 		font-size: small;
 		display: block;
@@ -50,6 +49,20 @@ html,body {
 		background-color: #FFFFFF;
 		border-top: solid 1px #000000;
 		padding: 0.5em;
+	}
+
+	#formatbox .links {
+		display: block;
+		position: relative;
+		float: left;
+		clear: left;
+	}
+
+	#formatbox .formats {
+		display: block;
+		position: relative;
+		float: right;
+		clear: right;
 	}
 
 	#informationbox {
