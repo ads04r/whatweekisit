@@ -27,3 +27,13 @@ directory.
 
 To actually use it, go to / on the server. That's it.
 
+Updates
+-------
+This is now at version 2.1. I'll probably have to make it conform
+to the University branding guidelines for it to become an official
+supported service, but other than that I don't intend to add any
+more features - there's already far too many for a silly little
+page that is only supposed to tell you what week it is. However,
+if you find a bug that prevents it from functioning, I'm totally
+happy to continue supporting it, I'm just not adding any extra
+functionality.
