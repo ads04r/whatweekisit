@@ -24,6 +24,14 @@ class Feed {
 	{
 		$dt = $day->academicYearStart();
 		$dte = $day->academicYearEnd();
+
+		if($dt < time()) // If this is the current year, do next year too.
+		{
+			$nextyear = $day->nextYear();
+			$dte = $nextyear->academicYearStart() - 86400;
+			$this->addWeekEvents($nextyear);
+		}
+
 		$year = date("Y", $dt);
 		$academic_year = $year . "/" . ($year + 1);
 
@@ -57,6 +65,47 @@ class Feed {
 
 	function addHolidayEvents($day)
 	{
+		function sort_by_start($a, $b)
+		{
+			if($a['start'] < $b['start']) { return -1; }
+			if($a['start'] > $b['start']) { return 1; }
+			return 0;
+		}
+
+		$cachefile = dirname(dirname(dirname(__FILE__))) . "/var/all.ttl";
+		if(!(file_exists($cachefile)))
+		{
+			return;
+		}
+
+		$g = new Graphite();
+		$g->load($cachefile);
+		$terms = array();
+		foreach($g->allOfType("http://id.southampton.ac.uk/ns/AcademicSessionTerm") as $term)
+		{
+			$item = array();
+			$dss = "" . $term->get("http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime");
+			$dse = "" . $term->get("http://purl.org/NET/c4dm/timeline.owl#endsAtDateTime");
+			$item['start'] = strtotime($dss);
+			$item['end'] = strtotime($dse);
+			if($item['end'] < time()) { continue; }
+			$terms[] = $item;
+		}
+		usort($terms, "sort_by_start");
+		$c = count($terms);
+		$i = 1;
+		for($i = 1; $i < $c; $i++)
+		{
+			$dts = $terms[$i - 1]['end'] + 86400;
+			$dte = $terms[$i]['start'] - 86400;
+			$m = (int) date("m", $dts);
+			$y = (int) date("Y", $dts);
+			$title = "Holiday";
+			if($m == 12) { $title = "Christmas Vacation " . $y . "/" . ($y + 1); }
+			if(($m == 3) | ($m == 4)) { $title = "Easter Vacation " . $y; }
+			if(($m >= 6) & ($m < 9)) { $title = "Summer Vacation " . $y; }
+			$this->addEvent($title, $dts, $dte, true);
+		}
 	}
 
 	function render($feedid)

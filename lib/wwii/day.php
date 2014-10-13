@@ -7,10 +7,18 @@ class Day
 	private $var_dir;
 	private $etc_dir;
 	private $g;
+	private $f3;
 
 	private $info;
 	private $year_start;
 	private $year_end;
+
+	public function nextYear()
+	{
+		$ds = date("Y-m-d", $this->dt + (86400 * 365));
+		$day = new Day($this->f3, $ds);
+		return($day);
+	}
 
 	public function toJson()
 	{
@@ -204,6 +212,8 @@ class Day
 
 	function __construct($f3, $date)
 	{
+		$this->f3 = $f3;
+
 		$ds = trim(preg_replace("/([^0-9]+)/", "_", $date), "_");
 		$dt = 0;
 		if(strlen($date) == 0)
