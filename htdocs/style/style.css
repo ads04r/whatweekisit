@@ -5,6 +5,9 @@ html,body {
 	overflow: hidden;
 }
 
+.scrolling {
+	overflow-y: scroll;
+}
 
 	#calendarbox {
 		border: solid 2px #000000;
