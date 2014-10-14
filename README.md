@@ -25,7 +25,9 @@ Directory paths are a lot better in this version. Docs
 for installing and configuring are in the /docs
 directory.
 
-To actually use it, go to / on the server. That's it.
+To actually use it, go to / on the server. That's it. If you
+want feed caching, the ./var/feeds directory needs to be writable
+by the web server.
 
 Updates
 -------
