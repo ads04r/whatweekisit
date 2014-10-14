@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="scrolling">
+	<head>
+		<title>What week is it?</title>
+		<meta http-equiv="Content-Language" content="English" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="./style/style.css" />
+	</head>
+	<body>
+		<div id="informationbox">
+			<h1 style="text-align: center;">Underlying Data</h1>
+			<p>
+				This tool is a product of the University's
+				<a href="http://data.southampton.ac.uk/">Open Data Service</a>. Our aim is to make
+				as much of the University's knowledge as accessible as possible.
+				Consequently, this site has many supplimentary functions, other than to
+				simply tell you what week of the adacemic year we are in currently.
+			</p>
+
+			<h2>Calendar Feeds</h2>
+			<p>
+				The following feeds are in ICS format, which can be used by most calendar
+				applications, such as Google Calendar and Apple's iPhone Calendar.
+			</p>
+			<ul>
+				<li> Holidays Feed - Contains an event for every University holiday for the next year.<br>
+					<samp>http://whatweekisit.soton.ac.uk/feed/holidays.ics</samp></li>
+				<li> Week Feed - Contains an event for every academic week for the next year.<br>
+					<samp>http://whatweekisit.soton.ac.uk/feed/weeks.ics</samp></li>
+			</ul>
+
+			<h2>Other Dates</h2>
+			<p>
+				It is possible, by altering the URL, to display the week and term information
+				for any date within the academic year, not just today. To do this, visit the URL
+				as follows:
+			</p>
+			<p><samp>http://whatweekisit.soton.ac.uk/<i>[yyyy-mm-dd]</i>.html</samp></p>
+			<p>So the date in a week's time would be:</p>
+			<p><samp>http://whatweekisit.soton.ac.uk/{{ date("Y-m-d", time() + (86400 * 7)) }}.html</samp></p>
+
+			<h2>Other Formats</h2>
+			<p>
+				If you're a programmer, we try to make it as simple as possible for you to build
+				other tools on top of What Week Is It. We do this through the extension of the page
+				called from the server. So if you wanted information about the current date
+				in JSON format, you would call:
+			</p>
+			<p><samp>http://whatweekisit.soton.ac.uk/today.<i>json</i></samp></p>
+			<p>
+				This also works with other dates, for example:
+			</p>
+			<p><samp>http://whatweekisit.soton.ac.uk/{{ date("Y-m-d", time() + (86400 * 7)) }}.json</samp></p>
+			<p>
+				The formats we support are as follows:
+			</p>
+			<ul>
+				<li> HTML - An html web page</li>
+				<li> JSON - JavaScript Object Notation</li>
+				<li> XML - An XML representation</li>
+				<li> TTL - An RDF representation, in Turtle</li>
+				<li> RDF - An RDF representation, in RDF/XML</li>
+			</ul>
+		</div>
+	</body>
+</html>

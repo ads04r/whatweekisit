@@ -7,9 +7,18 @@ class Day
 	private $var_dir;
 	private $etc_dir;
 	private $g;
+	private $f3;
 
 	private $info;
 	private $year_start;
+	private $year_end;
+
+	public function nextYear()
+	{
+		$ds = date("Y-m-d", $this->dt + (86400 * 365));
+		$day = new Day($this->f3, $ds);
+		return($day);
+	}
 
 	public function toJson()
 	{
@@ -129,7 +138,31 @@ class Day
 			if(($dt < $dt_st) | ($dt > $dt_ed)) { continue; }
 
 			$this->year_start = $dt_st;
+			$this->year_end = $dt_ed;
 			return($dt_st);
+		}
+
+		return 0;
+	}
+
+	public function academicYearEnd()
+	{
+		if($this->year_end > 0)
+		{
+			return($this->year_end);
+		}
+
+		$dt = $this->dt;
+		foreach($this->g->allOfType("http://id.southampton.ac.uk/ns/AcademicSession") as $res)
+		{
+			if(!($res->has("http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime"))) { continue; }
+			$dt_st = strtotime("" . $res->get("http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime"));
+			$dt_ed = strtotime("" . $res->get("http://purl.org/NET/c4dm/timeline.owl#endsAtDateTime"));
+			if(($dt < $dt_st) | ($dt > $dt_ed)) { continue; }
+
+			$this->year_start = $dt_st;
+			$this->year_end = $dt_ed;
+			return($dt_ed);
 		}
 
 		return 0;
@@ -179,6 +212,8 @@ class Day
 
 	function __construct($f3, $date)
 	{
+		$this->f3 = $f3;
+
 		$ds = trim(preg_replace("/([^0-9]+)/", "_", $date), "_");
 		$dt = 0;
 		if(strlen($date) == 0)
