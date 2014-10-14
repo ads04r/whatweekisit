@@ -54,3 +54,7 @@ Configuration
 
 6. Save the file and exit (:wq in vi).
 
+7. [OPTIONAL] To enable feed caching, allow the web server write access
+   to the 'feeds' directory. The safest way to do this is to make it
+   the file owner.
+   chown -R www-data:www-data ./var/feeds
