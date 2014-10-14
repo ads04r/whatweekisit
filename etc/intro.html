@@ -30,6 +30,12 @@
 				and add a line to make the script run once a day, preferably at a quiet time such as the
 				early hours of the morning.
 			</p>
+			<p>
+				<strong>OPTIONAL:</strong> The ICS feeds will cache in order to save processor
+				cycles. For this to happen, the <samp>./var/feeds</samp> directory needs to be
+				writable by the web server. The safest way to do this is
+				<samp>chown -R www-data:www-data ./var/feeds</samp>
+			</p>
 		</div>
 	</body>
 </html>

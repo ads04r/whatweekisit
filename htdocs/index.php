@@ -93,6 +93,19 @@ function render_old($f3)
 
 function render_feed($f3, $feedid)
 {
+	$cache = dirname(dirname(__FILE__)) . "/var/feeds/" . preg_replace("/[^a-z]/", "", $feedid) . ".ics";
+	if(file_exists($cache))
+	{
+		$dt = time() - 86400;
+		$fdt = filemtime($cache);
+		if($fdt > $dt)
+		{
+			header("Content-type: text/plain");
+			$ics = file_get_contents($cache);
+			return($ics);
+		}
+	}
+
 	$feed = new Feed();
 	$day = new Day($f3, "");
 
@@ -112,8 +125,16 @@ function render_feed($f3, $feedid)
 		return("");
 	}
 
+	$ics = $feed->render($feedid);
+	$fp = @fopen($cache, "w");
+	if($fp)
+	{
+		fwrite($fp, $ics);
+		fclose($fp);
+	}
+
 	header("Content-type: text/plain");
-	return($feed->render($feedid));
+	return($ics);
 }
 
 // Set up F3
