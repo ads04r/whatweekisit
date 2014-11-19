@@ -61,7 +61,7 @@ class Day
 		{
 			return("today");
 		}
-		return(trim($fn));
+		return(urlencode($fn));
 	}
 
 	public function getInfo()
@@ -208,6 +208,14 @@ class Day
 			$this->g->addTriple("" . $res, "http://purl.org/NET/c4dm/timeline.owl#contains", $uri);
 			$this->g->addTriple("" . $res, "http://purl.org/NET/c4dm/timeline.owl#contains", $week_uri);
 		}
+	}
+
+	public function today()
+	{
+		$ds_day = date("Y-m-d", $this->dt);
+		$ds_today = date("Y-m-d");
+
+		return(strcmp($ds_day, $ds_today) == 0);
 	}
 
 	function __construct($f3, $date)
