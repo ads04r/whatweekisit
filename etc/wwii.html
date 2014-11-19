@@ -13,6 +13,11 @@
 			<h1>{{ @day->weekNumber() }}</h1>
 			<p>of the year that started {{ date("jS F Y", @day->academicYearStart()) }}.</p>
 		</div>
+		<check if="{{ @day->today() }}">
+			<false>
+				<div id="warning"><h1>WARNING</h1><p>This date is <em>not</em> today!</p></div>
+			</false>
+		</check>
 		<div id="formatbox">
 			<span class="links">
 				<a href="data.html">More Information</a>
