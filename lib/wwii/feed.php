@@ -112,7 +112,7 @@ class Feed {
 	{
 		$ret = array();
 		$ret[] = "BEGIN:VCALENDAR";
-		$ret[] = "VERSION:1.0";
+		$ret[] = "VERSION:2.0";
 		$ret[] = "PRODID:-//whatweekisitsoton//calendar//" . $feedid;
 		foreach($this->events as $event)
 		{
