@@ -111,7 +111,11 @@ class Day
 				$semester['semester'] = (int) $id;
 				continue;
 			}
-
+			if($res->isType("http://id.southampton.ac.uk/ns/ExamPeriod"))
+			{
+				$data['exams'] = "" . $res->label();
+				continue;
+			}
 		}
 
 		$data['week'] = $week;

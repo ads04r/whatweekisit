@@ -16,7 +16,7 @@ $g->load($uri);
 foreach($g->allSubjects() as $subj)
 {
 	$subj_uri = "" . $subj;
-	if(preg_match("|^http://id\\.southampton\\.ac\\.uk/academic-session/([0-9]+)|", $subj_uri) == 0) { continue; }
+	if(preg_match("|^http://id\\.southampton\\.ac\\.uk/academic-([a-z]+)/([0-9]+)|", $subj_uri) == 0) { continue; }
 	$res = $g->resource($subj_uri);
 	$ret->addTurtle("", $res->serialize("Turtle"));
 }

@@ -119,6 +119,11 @@ function render_feed($f3, $feedid)
 		$feed->addHolidayEvents($day);
 	}
 
+	if(strcmp($feedid, "closures") == 0)
+	{
+		$feed->addclosureEvents();
+	}
+
 	if($feed->count == 0)
 	{
 		$f3->error(404);

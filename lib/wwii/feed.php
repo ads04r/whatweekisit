@@ -20,6 +20,57 @@ class Feed {
 		$this->count = count($this->events);
 	}
 
+	function addClosureEvents()
+	{
+		function sort_by_start($a, $b)
+		{
+			if($a['start'] < $b['start']) { return -1; }
+			if($a['start'] > $b['start']) { return 1; }
+			return 0;
+		}
+
+		$cachefile = dirname(dirname(dirname(__FILE__))) . "/var/all.ttl";
+		if(!(file_exists($cachefile)))
+		{
+			return;
+		}
+
+		$g = new Graphite();
+		$g->load($cachefile);
+		$terms = array();
+		foreach($g->allOfType("http://id.southampton.ac.uk/ns/UniversityClosureDay") as $term)
+		{
+			$item = array();
+			$dss = "" . $term->get("http://purl.org/NET/c4dm/timeline.owl#beginsAtDateTime");
+			$dse = "" . $term->get("http://purl.org/NET/c4dm/timeline.owl#endsAtDateTime");
+			$dts = strtotime($dss);
+			$dte = strtotime($dse);
+			$dss = date("Y-m-d", ($dts + 20000)) . " 06:00:00";
+			$dse = date("Y-m-d", ($dte + 20000)) . " 06:00:00";
+			$title = "" . $term->get("http://www.w3.org/2000/01/rdf-schema#label");
+			$item['start'] = strtotime($dss);
+			$item['end'] = strtotime($dse);
+			$item['title'] = $title;
+			if(strcmp($item['title'], "[NULL]") == 0) { $item['title'] = ""; }
+			if($item['end'] < time()) { continue; }
+			$terms[] = $item;
+		}
+		usort($terms, "sort_by_start");
+		$c = count($terms);
+		$i = 1;
+		for($i = 1; $i < $c; $i++)
+		{
+
+			$dts = $terms[$i]['start'];
+			$dte = $terms[$i]['end'];
+
+			$title = $terms[$i]['title'];
+			if(strlen($title) == 0) { $title = "University Closure Day"; }
+
+			$this->addEvent($title, $dts, $dte, true);
+		}
+	}
+
 	function addWeekEvents($day)
 	{
 		$dt = $day->academicYearStart();
