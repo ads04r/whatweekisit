@@ -3,7 +3,18 @@
 class Feed {
 
 	private $events;
+	private $cal_title;
 	public $count;
+
+	function setTitle($title)
+	{
+		$this->cal_title = $title;
+	}
+
+	function removeTitle()
+	{
+		$this->cal_title = "";
+	}
 
 	function addEvent($title, $start_time, $end_time, $all_day=false, $description="", $location="")
 	{
@@ -101,7 +112,7 @@ class Feed {
 		for($i = 0; $i < 53; $i++)
 		{
 			$thisweek = $dt + ($i * (86400 * 7));
-			$thisweekend = $thisweek + (86400 * 6);
+			$thisweekend = $thisweek + (86400 * 5);
 			if($thisweekend > $dte)
 			{
 				$thisweekend = $dte;
@@ -159,12 +170,21 @@ class Feed {
 		}
 	}
 
-	function render($feedid)
+	function render($feedid, $or_cal_title="")
 	{
+		$cal_title = $or_cal_title;
+		if(strlen($cal_title) == 0)
+		{
+			$cal_title = $this->cal_title;
+		}
 		$ret = array();
 		$ret[] = "BEGIN:VCALENDAR";
 		$ret[] = "VERSION:2.0";
 		$ret[] = "PRODID:-//whatweekisitsoton//calendar//" . $feedid;
+		if(strlen($cal_title) > 0)
+		{
+			$ret[] = "X-WR-CALNAME:" . $cal_title;
+		}
 		foreach($this->events as $event)
 		{
 			$ret[] = "UID:event" . md5(json_encode($event)) . "@whatweekisit.soton.ac.uk";
@@ -195,6 +215,7 @@ class Feed {
 	function __construct()
 	{
 		$this->events = array();
+		$this->cal_title = "";
 		$this->count = 0;
 	}
 

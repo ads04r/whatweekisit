@@ -100,7 +100,7 @@ function render_feed($f3, $feedid)
 		$fdt = filemtime($cache);
 		if($fdt > $dt)
 		{
-			header("Content-type: text/plain");
+			header("Content-type: text/calendar");
 			$ics = file_get_contents($cache);
 			return($ics);
 		}
@@ -112,16 +112,19 @@ function render_feed($f3, $feedid)
 	if(strcmp($feedid, "weeks") == 0)
 	{
 		$feed->addWeekEvents($day);
+		$feed->setTitle("University Weeks");
 	}
 
 	if(strcmp($feedid, "holidays") == 0)
 	{
 		$feed->addHolidayEvents($day);
+		$feed->setTitle("University Vacation Periods");
 	}
 
 	if(strcmp($feedid, "closures") == 0)
 	{
 		$feed->addclosureEvents();
+		$feed-setTitle("University Official Closures");
 	}
 
 	if($feed->count == 0)
@@ -138,7 +141,7 @@ function render_feed($f3, $feedid)
 		fclose($fp);
 	}
 
-	header("Content-type: text/plain");
+	header("Content-type: text/calendar");
 	return($ics);
 }
 
