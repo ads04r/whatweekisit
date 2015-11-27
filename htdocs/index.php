@@ -124,7 +124,7 @@ function render_feed($f3, $feedid)
 	if(strcmp($feedid, "closures") == 0)
 	{
 		$feed->addclosureEvents();
-		$feed-setTitle("University Official Closures");
+		$feed->setTitle("University Official Closures");
 	}
 
 	if($feed->count == 0)
