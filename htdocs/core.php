@@ -15,12 +15,13 @@ function render($f3, $date="", $format="html")
 {
 	global $var_dir;
 	global $etc_dir;
+	global $intro_file;
 	global $template_file;
 
 	if(!(file_exists($var_dir . "/current.ttl")))
 	{
 		$template = new Template();
-		return($template->render($etc_dir . "/intro.html"));
+		return($template->render($intro_file));
 	}
 
 	$day = new Day($f3, $date);
