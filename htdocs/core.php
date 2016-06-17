@@ -172,7 +172,7 @@ $f3->route("GET /feed/@feedname.ics", function($f3) { print(render_feed($f3, $f3
 
 // Static pages
 
-$f3->route("GET /data.html", function($f3) { $template = new Template(); print($template->render("../etc/data.html")); } );
+$f3->route("GET /data.html", function($f3) { global $about_file; $template = new Template(); print($template->render($about_file)); } );
 $f3->route("GET /", function($f3) { print(render($f3, "", "html")); } );
 
 $f3->run();
