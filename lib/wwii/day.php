@@ -250,7 +250,7 @@ class Day
 		$this->info = array();
 
 		$this->g = new Graphite();
-		$this->g->load($this->var_dir . "/current.ttl");
+		$this->g->load($this->var_dir . "/all.ttl");
 		if($dt > 0)
 		{
 			$this->fillGraph();
