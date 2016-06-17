@@ -93,7 +93,9 @@ function render_old($f3)
 
 function render_feed($f3, $feedid)
 {
-	$cache = dirname(dirname(__FILE__)) . "/var/feeds/" . preg_replace("/[^a-z]/", "", $feedid) . ".ics";
+	global $var_dir;
+
+	$cache = $var_dir . "/feeds/" . preg_replace("/[^a-z]/", "", $feedid) . ".ics";
 	if(file_exists($cache))
 	{
 		$dt = time() - 86400;
