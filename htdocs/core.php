@@ -14,11 +14,13 @@ if($fh = opendir($lib_dir . "/wwii"))
 function render($f3, $date="", $format="html")
 {
 	global $var_dir;
+	global $etc_dir;
+	global $template_file;
 
 	if(!(file_exists($var_dir . "/current.ttl")))
 	{
 		$template = new Template();
-		return($template->render("../etc/intro.html"));
+		return($template->render($etc_dir . "/intro.html"));
 	}
 
 	$day = new Day($f3, $date);
@@ -66,7 +68,7 @@ function render($f3, $date="", $format="html")
 
 	$f3->set('day', $day);
 	$template = new Template();
-	return($template->render("../etc/wwii.html"));
+	return($template->render($template_file));
 }
 
 function render_old($f3)
@@ -145,7 +147,7 @@ function render_feed($f3, $feedid)
 
 // Set up F3
 
-$f3 = require($lib_dir . "/fatfree/lib/base.php");
+$f3 = require($f3_base);
 $f3->set("TEMP", "/tmp/");
 $f3->set('DEBUG', true);
 
