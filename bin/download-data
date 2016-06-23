@@ -12,7 +12,11 @@ include_once($lib_dir . "/Graphite/Graphite.php");
 
 $g = new Graphite();
 $ret = new Graphite();
-$g->load($uri);
+if(($g->load($uri)) == 0)
+{
+	error_log("No triples loaded. Cancelling operation.");
+	exit(1);
+}
 foreach($g->allSubjects() as $subj)
 {
 	$subj_uri = "" . $subj;
