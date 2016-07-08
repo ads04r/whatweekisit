@@ -1,7 +1,7 @@
 What Week Is It?
 ================
 
-Version 2.1
+Version 2.2
 -----------
 
 Something for Southampton uni that tells you what week it is.
@@ -31,7 +31,7 @@ by the web server.
 
 Updates
 -------
-This is now at version 2.1. I'll probably have to make it conform
+This is now at version 2.2. I'll probably have to make it conform
 to the University branding guidelines for it to become an official
 supported service, but other than that I don't intend to add any
 more features - there's already far too many for a silly little
